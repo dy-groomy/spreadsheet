@@ -1,0 +1,15 @@
+table, th, td {
+  border: 1px solid black;
+  text-align: center;
+}
+
+
+
+th, td {
+  width: 100px;
+  height: 30px;
+}
+
+.highlight {
+  background-color: skyblue;
+}
