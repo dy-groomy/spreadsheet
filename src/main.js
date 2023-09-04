@@ -78,6 +78,10 @@ table.addEventListener("focusout", function (event) {
 
 /** csv 파일로 export */
 exportBtn.onclick = ()=> {
+  if(isEmptyTable){
+    alert("표가 없습니다.");
+    return;
+  }
   const value = prompt('저장할 파일명을 입력하세요:');
   const inputValue = value.trim();
   const validFileName = fileNameTest(inputValue);
