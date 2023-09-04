@@ -7,6 +7,8 @@ const clearBtn = document.getElementById("clear");
 const rowAddBtn = document.getElementById("rowAdd");
 const colAddBtn = document.getElementById("colAdd");
 
+let isEmptyTable = true;
+
 
 /**
  * 표 생성 
@@ -19,21 +21,39 @@ createBtn.onclick = () =>{
   if(Number.isInteger(numRow)&&Number.isInteger(numCol)&&numRow>0&&numCol>0)
   {    
     setTable(table,numRow,numCol);
+    isEmptyTable = false;
     return;
   } 
   else{    
     alert("행, 열 수를 다시 입력하세요.");
+    document.getElementById("numRow").value = '';
+    document.getElementById("numCol").value = '';
     return;
   }
 
 }
 
 /**clear */
-clearBtn.onclick = ()=> {clear(table);};
+clearBtn.onclick = ()=> {
+  clear(table);
+  isEmptyTable = true;
+};
 
-rowAddBtn.onclick = () =>{rowAdd(table);};
+rowAddBtn.onclick = () =>{
+  if(isEmptyTable){
+    alert("표가 없습니다.");
+    return;
+  }
+  else{rowAdd(table);}
+};
 
-colAddBtn.onclick = () =>{colAdd(table);};
+colAddBtn.onclick = () =>{
+  if(isEmptyTable){
+    alert("표가 없습니다.");
+    return;
+  }
+  else{colAdd(table)};
+};
 /**
  * focus 되면 헤더 배경 파란색
  */

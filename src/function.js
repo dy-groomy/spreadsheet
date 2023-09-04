@@ -45,6 +45,7 @@ export function exportTable2Csv(table, fileName){
 export function rowAdd(table){
   let numRows = table.rows.length-1;
   let numCols = table.rows[0].cells.length - 1;
+  
   let row = table.insertRow(numRows+1);
   for (let j = 0; j <= numCols; j++) {
     let cell = row.insertCell(j);
@@ -60,6 +61,7 @@ export function rowAdd(table){
 export function colAdd(table){
   let numRows = table.rows.length-1;
   let numCols = table.rows[0].cells.length - 1;
+  
   for (let i = 0; i <= numRows; i++) {
     let row = table.rows[i];
     let cell = row.insertCell(numCols+1);
@@ -78,6 +80,7 @@ export function fileNameTest(str){
   return validFileName.test(str);
 }
 
+/** 열 이름 생성 */
 function getColumnName(num) {
   let columnName = "";
   while (num > 0) {
