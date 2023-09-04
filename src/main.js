@@ -1,11 +1,39 @@
-import {setTable, clear, exportTable2Csv} from "./function.js"
+import {setTable, clear, exportTable2Csv, fileNameTest, rowAdd, colAdd} from "./function.js"
 
 const table = document.getElementById("spreadsheet");
+const createBtn = document.getElementById("createSpreadSheet");
 const exportBtn = document.getElementById("export");
 const clearBtn = document.getElementById("clear");
-setTable(table);
+const rowAddBtn = document.getElementById("rowAdd");
+const colAddBtn = document.getElementById("colAdd");
 
 
+/**
+ * 표 생성 
+ * 
+ * */
+createBtn.onclick = () =>{
+  const numRow = Number(document.getElementById("numRow").value);
+  const numCol = Number(document.getElementById("numCol").value);
+
+  if(Number.isInteger(numRow)&&Number.isInteger(numCol)&&numRow>0&&numCol>0)
+  {    
+    setTable(table,numRow,numCol);
+    return;
+  } 
+  else{    
+    alert("행, 열 수를 다시 입력하세요.");
+    return;
+  }
+
+}
+
+/**clear */
+clearBtn.onclick = ()=> {clear(table);};
+
+rowAddBtn.onclick = () =>{rowAdd(table);};
+
+colAddBtn.onclick = () =>{colAdd(table);};
 /**
  * focus 되면 헤더 배경 파란색
  */
@@ -32,9 +60,13 @@ table.addEventListener("focusout", function (event) {
 exportBtn.onclick = ()=> {
   const value = prompt('저장할 파일명을 입력하세요:');
   const inputValue = value.trim();
+  const validFileName = fileNameTest(inputValue);
+  if(!validFileName){
+    alert("제대로된 파일명이 입력되지 않았습니다.");
+    return;
+  } 
+
   exportTable2Csv(table,inputValue);
 };
 
-/**clear */
-clearBtn.onclick = ()=> {clear(table)};
 

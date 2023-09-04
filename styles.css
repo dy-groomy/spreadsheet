@@ -13,3 +13,11 @@ th, td {
 .highlight {
   background-color: skyblue;
 }
+
+#numRow{
+  width: 150px;
+}
+
+#numCol{
+  width: 150px;
+}
